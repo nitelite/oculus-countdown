@@ -1,4 +1,60 @@
-<div id="oculus-logo">
-	<div id="tagline">Enter the Rift in</div>
-	<div id="counter">Calculating...</div>
-</div>
+<html>
+<head>
+	<title></title>
+	<style>
+	#oculus-logo {
+		background-image: url(oculus-stadium.png);
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: contain;
+		width: 100%;
+		height: 100%;
+		position: relative;
+	}
+	#counter, #tagline {
+		position: absolute;
+		font-family: 'Open Sans', sans-serif;
+		text-align: center;
+	}
+	#tagline {
+		line-height: 100vh;
+		margin-top: -10vh;
+		width: 100%;
+		font-size: 3vw;		
+	}
+	#counter {
+		line-height: 100vh;
+		width: 100%;
+		font-size: 4vw;
+	}
+	</style>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
+</head>
+<body>
+	<div id="oculus-logo">
+		<div id="tagline">Enter the Rift in</div>
+		<div id="counter">Calculating...</div>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+	<script>
+	function updateCounter() {
+		var target = moment("2016-03-28");
+		var now = moment();
+		console.log(target.diff(now));
+		var dur = moment.duration(target.diff(now));
+		var str = "";
+		if(dur.months() > 0) {
+			str += dur.months() + " month "
+		}
+		if(dur.days() > 0) {
+			str += dur.days() + " days";
+		}
+		$("#counter").html(str + " " + dur.hours() + " hours");
+		// Run again in 30 minutes
+		setTimeout(updateCounter, 1000 * 60 * 30);
+	}
+	updateCounter();
+	</script>
+</body>
+</html>
