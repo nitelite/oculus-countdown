@@ -49,9 +49,12 @@
 			str += dur.months() + " month "
 		}
 		if(dur.days() > 0) {
-			str += dur.days() + " days";
+			str += dur.days() + " day(s) ";
 		}
-		$("#counter").html(str + " " + dur.hours() + " hours");
+		if(dur.hours() > 0) {
+			str += dur.hours() + " hour(s)";
+		}
+		$("#counter").html(str);
 		// Run again in 30 minutes
 		setTimeout(updateCounter, 1000 * 60 * 30);
 	}
