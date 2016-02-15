@@ -44,16 +44,14 @@
 		var now = moment();
 		console.log(target.diff(now));
 		var dur = moment.duration(target.diff(now));
-		var str = "";
-		if(dur.months() > 0) {
-			str += dur.months() + " month "
-		}
-		if(dur.days() > 0) {
-			str += dur.days() + " day(s) ";
-		}
-		if(dur.hours() > 0) {
-			str += dur.hours() + " hour(s)";
-		}
+		var str = (dur.months() > 0) ? dur.months() + " month " : '';
+		
+		str += (dur.days() > 0) ? dur.days() + " day" : '';
+		str += (dur.days() > 1) ? 's ' : ' ';
+		
+		str += (dur.hours() > 0) ? dur.hours() + " hour" : '';
+		str += (dur.hours() > 1) ? 's ' : ' ';
+		
 		$("#counter").html(str);
 		// Run again in 30 minutes
 		setTimeout(updateCounter, 1000 * 60 * 30);
